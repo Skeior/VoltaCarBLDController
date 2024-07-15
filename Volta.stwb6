@@ -1,0 +1,822 @@
+{
+  "algorithm": "sixStep",
+  "description": "",
+  "checkList": {},
+  "hardwares": {
+    "type": "INVERTER",
+    "control": {
+      "mcu": {
+        "id": "STM32F303CBTx"
+      },
+      "clockSource": "8_crystal",
+      "clockFrequency": 72,
+      "connectors": [],
+      "features": [
+        {
+          "type": "SerialPortCommunication",
+          "name": "SerialPortCommunication",
+          "hwVariants": [
+            {
+              "signals": {
+                "UART_TX": [
+                  {
+                    "name": "PB6",
+                    "help": {},
+                    "cost": 0
+                  }
+                ],
+                "UART_RX": [
+                  {
+                    "name": "PB7",
+                    "help": {},
+                    "cost": 0
+                  }
+                ]
+              },
+              "type": "Uart2WiresCommunication",
+              "cost": 0
+            }
+          ]
+        }
+      ],
+      "hardwareFamily": "CONTROL",
+      "id": "user.VoltaCar.json",
+      "label": "VoltaCar",
+      "description": "Voltacar",
+      "descVersion": 4,
+      "contentVersion": "1.0",
+      "compatibility": [
+        "FOC",
+        "sixStep"
+      ]
+    },
+    "power": [
+      {
+        "motorDrives": [
+          {
+            "name": "M1",
+            "minRatedVoltage": 10,
+            "maxRatedVoltage": 85,
+            "maxRatedCurrent": 100,
+            "maxRatedPower": 8500,
+            "connectorType": "None",
+            "features": [
+              {
+                "name": "CurrentSensing",
+                "type": "CurrentSensing",
+                "tRise": 1000,
+                "hwVariants": [
+                  {
+                    "type": "ThreeShunt_AmplifiedCurrents",
+                    "help": {
+                      "en": ""
+                    },
+                    "signals": {
+                      "CURRENT_AMPL_U": [
+                        {
+                          "name": "PA0",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "CURRENT_AMPL_V": [
+                        {
+                          "name": "PA1",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "CURRENT_AMPL_W": [
+                        {
+                          "name": "PA2",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "shuntResistor": 0.001,
+                    "amplifyingNetworkVm": 1.65,
+                    "amplifyingNetworkPrating": 3,
+                    "opAmpGain": 20,
+                    "cost": 0,
+                    "amplifyingNetworkImax": 100,
+                    "offsetNetworkAttenuation": 0.95,
+                    "polarizationOffset": 1.65
+                  }
+                ]
+              },
+              {
+                "type": "SpeedAndPositionSensing",
+                "name": "SpeedAndPositionSensing",
+                "hwVariants": [
+                  {
+                    "signals": {
+                      "HALLSENSOR_H1": [
+                        {
+                          "name": "PA5",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H2": [
+                        {
+                          "name": "PB3",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ],
+                      "HALLSENSOR_H3": [
+                        {
+                          "name": "PB10",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "type": "HallEffectSensor",
+                    "cost": 0
+                  },
+                  {
+                    "type": "BEMFSensingADCFixedDivider",
+                    "help": {
+                      "en": "enabled by default"
+                    },
+                    "signals": {
+                      "BEMF_U": [
+                        {
+                          "name": "PB12",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "BEMF_V": [
+                        {
+                          "name": "PB14",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "BEMF_W": [
+                        {
+                          "name": "PB15",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "dividingNetworkR1": 115000,
+                    "dividingNetworkR2": 3320
+                  }
+                ]
+              },
+              {
+                "name": "PhaseVoltageGeneration",
+                "type": "PhaseVoltageGeneration",
+                "driverName": "L6398DTR",
+                "driverPN": "L6398DTR",
+                "minDeadTime": 700,
+                "maxSwitchingFreq": 50,
+                "tNoise": 1000,
+                "hwVariants": [
+                  {
+                    "type": "DrivingHighAndLowSides",
+                    "help": {
+                      "en": "How to enable this variant"
+                    },
+                    "signals": {
+                      "PWM_CHU_H": [
+                        {
+                          "name": "PA8",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHV_H": [
+                        {
+                          "name": "PA9",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHW_H": [
+                        {
+                          "name": "PA10",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHU_L": [
+                        {
+                          "name": "PA11",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHV_L": [
+                        {
+                          "name": "PA12",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ],
+                      "PWM_CHW_L": [
+                        {
+                          "name": "PB1",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "deadTime": 800,
+                    "lowSideSwitchesDrivingPolarity": "Active low",
+                    "highSideSwitchesDrivingPolarity": "Active high"
+                  }
+                ]
+              },
+              {
+                "type": "Potentiometer",
+                "name": "Potentiometer",
+                "hwVariants": [
+                  {
+                    "signals": {
+                      "POTENTIOMETER_LEVEL": [
+                        {
+                          "name": "PA6",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "type": "Potentiometer",
+                    "cost": 0,
+                    "potVm": 5,
+                    "potRmax": 10000,
+                    "potLevelMin": 0
+                  }
+                ]
+              },
+              {
+                "type": "VBusSensing",
+                "name": "VBusSensing",
+                "hwVariants": [
+                  {
+                    "signals": {
+                      "VBUS": [
+                        {
+                          "name": "PB13",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "type": "VBusSensing",
+                    "cost": 0,
+                    "busVoltageDivider": 46.45,
+                    "busVoltageDividerR1": 150000,
+                    "busVoltageDividerR2": 3320
+                  }
+                ],
+                "busVoltageDivider": 46.45
+              },
+              {
+                "name": "TemperatureSensing",
+                "type": "TemperatureSensing",
+                "hwVariants": [
+                  {
+                    "type": "NTCThermistor",
+                    "help": {
+                      "en": ""
+                    },
+                    "signals": {
+                      "TEMPERATURE_NTC": [
+                        {
+                          "name": "PA3",
+                          "help": {
+                            "en": ""
+                          },
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "v0": 1055,
+                    "t0": 25,
+                    "gain": 22.7,
+                    "maxSensorTemperature": 110
+                  }
+                ]
+              },
+              {
+                "type": "Potentiometer",
+                "name": "Potentiometer",
+                "hwVariants": [
+                  {
+                    "signals": {
+                      "POTENTIOMETER_LEVEL": [
+                        {
+                          "name": "PA6",
+                          "help": {},
+                          "cost": 0
+                        }
+                      ]
+                    },
+                    "type": "Potentiometer",
+                    "cost": 0,
+                    "potRmax": 5000,
+                    "potVm": 5,
+                    "potLevelMin": 0
+                  }
+                ]
+              }
+            ],
+            "compatibility": [
+              "FOC",
+              "sixStep"
+            ]
+          }
+        ],
+        "connectorTypes": [
+          "None"
+        ],
+        "hardwareFamily": "POWER",
+        "id": "user.VoltaCar.json",
+        "label": "VoltaCar",
+        "description": "Voltacar",
+        "descVersion": 4,
+        "contentVersion": "1.0",
+        "compatibility": [
+          "FOC",
+          "sixStep"
+        ]
+      }
+    ],
+    "motor": [
+      {
+        "label": "VoltaCar2",
+        "hardwareFamily": "MOTOR",
+        "description": "",
+        "compatibility": [
+          "FOC",
+          "sixStep"
+        ],
+        "polePairs": 12,
+        "nominalCurrent": 60,
+        "nominalDCVoltage": 80,
+        "rs": 0.11,
+        "ls": 0.018,
+        "magneticStructure": {
+          "type": "SM-PMSM"
+        },
+        "BEmfConstant": 70,
+        "inertia": 0.34808465443347814,
+        "friction": 0.4372922433049098,
+        "maxRatedSpeed": 650,
+        "hallSensor": {
+          "sensorsDisplacement": 60,
+          "placementElectricalAngle": 300
+        },
+        "id": "userMotor.VoltaCar2.json",
+        "status": "success"
+      }
+    ],
+    "connections": [
+      {
+        "motor": 0,
+        "power": 0,
+        "drive": 0,
+        "ctrlConn": 0
+      }
+    ],
+    "constrains": {
+      "connectAlgoVersion": 1,
+      "MCUParamVersion": 1,
+      "motors": [
+        {
+          "motor": "M1",
+          "features": [
+            {
+              "name": "CurrentSensing",
+              "type": "CurrentSensing",
+              "hwVariants": [
+                {
+                  "name": "ThreeShunt_AmplifiedCurrents",
+                  "swVariants": [
+                    {
+                      "name": "SingleADC",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "CURRENT_AMPL_U",
+                              "pin": "PA0",
+                              "peripheral": "ADC1_IN1",
+                              "help": ""
+                            },
+                            {
+                              "name": "CURRENT_AMPL_V",
+                              "pin": "PA1",
+                              "peripheral": "ADC1_IN2",
+                              "help": ""
+                            },
+                            {
+                              "name": "CURRENT_AMPL_W",
+                              "pin": "PA2",
+                              "peripheral": "ADC1_IN3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "SpeedAndPositionSensing",
+              "type": "SpeedAndPositionSensing",
+              "hwVariants": [
+                {
+                  "name": "HallEffectSensor",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "HALLSENSOR_H1",
+                              "pin": "PA5",
+                              "peripheral": "TIM2_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H2",
+                              "pin": "PB3",
+                              "peripheral": "TIM2_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "HALLSENSOR_H3",
+                              "pin": "PB10",
+                              "peripheral": "TIM2_CH3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "BEMFSensingADCFixedDivider",
+                  "swVariants": [
+                    {
+                      "name": "IndependentWires",
+                      "independentWires": {
+                        "BEMF_U": [
+                          {
+                            "ip": "ADC4",
+                            "pin": "PB12",
+                            "peripheral": "ADC4_IN3",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ],
+                        "BEMF_V": [
+                          {
+                            "ip": "ADC4",
+                            "pin": "PB14",
+                            "peripheral": "ADC4_IN4",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ],
+                        "BEMF_W": [
+                          {
+                            "ip": "ADC4",
+                            "pin": "PB15",
+                            "peripheral": "ADC4_IN5",
+                            "help": "",
+                            "cost": 0
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "PhaseVoltageGeneration",
+              "type": "PhaseVoltageGeneration",
+              "hwVariants": [
+                {
+                  "name": "DrivingHighAndLowSides",
+                  "swVariants": [
+                    {
+                      "name": "SingleTimer",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "TIM1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "PWM_CHU_H",
+                              "pin": "PA8",
+                              "peripheral": "TIM1_CH1",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHV_H",
+                              "pin": "PA9",
+                              "peripheral": "TIM1_CH2",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHW_H",
+                              "pin": "PA10",
+                              "peripheral": "TIM1_CH3",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHU_L",
+                              "pin": "PA11",
+                              "peripheral": "TIM1_CH1N",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHV_L",
+                              "pin": "PA12",
+                              "peripheral": "TIM1_CH2N",
+                              "help": ""
+                            },
+                            {
+                              "name": "PWM_CHW_L",
+                              "pin": "PB1",
+                              "peripheral": "TIM1_CH3N",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Potentiometer",
+              "type": "Potentiometer",
+              "hwVariants": [
+                {
+                  "name": "Potentiometer",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC2"
+                          ],
+                          "signals": [
+                            {
+                              "name": "POTENTIOMETER_LEVEL",
+                              "pin": "PA6",
+                              "peripheral": "ADC2_IN3",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "VBusSensing",
+              "type": "VBusSensing",
+              "hwVariants": [
+                {
+                  "name": "VBusSensing",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC3"
+                          ],
+                          "signals": [
+                            {
+                              "name": "VBUS",
+                              "pin": "PB13",
+                              "peripheral": "ADC3_IN5",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "TemperatureSensing",
+              "type": "TemperatureSensing",
+              "hwVariants": [
+                {
+                  "name": "NTCThermistor",
+                  "swVariants": [
+                    {
+                      "name": "SingleWire",
+                      "solutions": [
+                        {
+                          "ip": [
+                            "ADC1"
+                          ],
+                          "signals": [
+                            {
+                              "name": "TEMPERATURE_NTC",
+                              "pin": "PA3",
+                              "peripheral": "ADC1_IN4",
+                              "help": ""
+                            }
+                          ],
+                          "cost": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "features": [],
+      "errors": [],
+      "warnings": [
+        {
+          "en": "CSConnect: ThreeShunt_AmplifiedCurrents DualADCs SharedSignal"
+        },
+        {
+          "en": "CSConnect: ThreeShunt_AmplifiedCurrents DualADCs NoSolution"
+        }
+      ],
+      "info": []
+    },
+    "inverter": {
+      "hardwareFamily": "INVERTER",
+      "id": "user.VoltaCar.json",
+      "label": "VoltaCar",
+      "description": "Voltacar",
+      "descVersion": 4,
+      "contentVersion": "1.0",
+      "compatibility": [
+        "FOC",
+        "sixStep"
+      ],
+      "status": "success"
+    }
+  },
+  "version": 13,
+  "workBenchVersion": "6.3.0",
+  "workBenchVersionFileCreation": "6.3.0",
+  "details": {
+    "steps": {
+      "speedSensing_0": {
+        "mainSensorParams": {
+          "speedSensorMode": "ADC",
+          "maxAllowedErrors": "Number.NaN",
+          "sensorParams": {
+            "_tag": "ADC",
+            "speedFIFODepth": "Number.NaN",
+            "PWMOnSensing": true,
+            "bemfPWMOnEnableThresDpp": "Number.NaN",
+            "bemfPWMOnEnableHysterDpp": "Number.NaN",
+            "bemfDivider": "Number.NaN",
+            "samplingTime": "Number.NaN",
+            "thresholdHighSide": "Number.NaN",
+            "thresholdLowSide": "Number.NaN",
+            "samplingPointOff": "Number.NaN",
+            "thresholdPwmOn": "Number.NaN",
+            "samplingPointOn": "Number.NaN",
+            "fallingZCD": "Number.NaN",
+            "risingZCD": "Number.NaN",
+            "adcWDFilter": "Number.NaN",
+            "delayComputation": "Number.NaN",
+            "timer": ""
+          }
+        },
+        "auxSensorParams": {
+          "enableAuxSensing": false,
+          "speedSensorMode": "",
+          "maxAllowedErrors": "Number.NaN",
+          "sensorParams": {
+            "_tag": "hall",
+            "speedFIFODepth": "Number.NaN",
+            "inputFilterDuration": "Number.NaN",
+            "useMTPA": false
+          }
+        },
+        "startupParams": {
+          "startupProfile": {
+            "initialElectricalAngle": "Number.NaN",
+            "pts": [
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              },
+              {
+                "duration": "Number.NaN",
+                "speedTarget": "Number.NaN",
+                "currVoltTarget": "Number.NaN"
+              }
+            ],
+            "sensorlessStartingPhase": "Number.NaN",
+            "isDrivingModeVoltage": true
+          },
+          "startupExitCond": {
+            "startUpSpeedThresh": "Number.NaN",
+            "consecutiveCorrectMeasures": "Number.NaN",
+            "speedBandToleranceLowerLimit": "Number.NaN",
+            "speedBandToleranceUpperLimit": "Number.NaN"
+          }
+        }
+      },
+      "stageConfig_0": {
+        "potentiometer": {
+          "enable": true,
+          "samplingTime": "Number.NaN"
+        },
+        "esc": {
+          "enabled": false
+        }
+      }
+    }
+  }
+}
